@@ -3179,6 +3179,109 @@ footer{
 }
 </style>
 
+
+<style id="experience-mobile-responsive-fix">
+/* =========================================================
+   EXPERIENCE — RESPONSIVE MOBILE FIX
+   Desktop: 4 cards per row
+   Tablet: 3 cards per row
+   Mobile: 1 card per row
+========================================================= */
+
+@media (max-width: 1050px) and (min-width: 701px) {
+  #experience .timeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  #experience .timeline {
+    width: 100%;
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  #experience .tl-item {
+    width: 100%;
+  }
+
+  #experience .tl-card {
+    width: 100%;
+    min-height: 0 !important;
+    border-radius: 16px;
+  }
+
+  #experience .tl-summary {
+    width: 100%;
+    padding: 22px 18px 20px;
+  }
+
+  #experience .tl-company a {
+    gap: 12px;
+  }
+
+  #experience .tl-company-logo {
+    width: 120px !important;
+    height: 120px !important;
+    padding: 8px !important;
+  }
+
+  #experience .tl-role {
+    font-size: 10px;
+    letter-spacing: .06em;
+  }
+
+  #experience .tl-tags {
+    margin-top: 12px;
+  }
+
+  #experience .tl-tag {
+    font-size: 10px;
+    padding: 5px 11px;
+  }
+
+  #experience .tl-body {
+    margin: 0 18px;
+  }
+
+  #experience details[open] .tl-body {
+    padding: 16px 0 20px;
+  }
+
+  #experience .tl-body li {
+    font-size: 10px;
+    line-height: 1.6;
+    margin-bottom: 9px;
+  }
+
+  #experience .tl-achievement .stat-label {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  #experience .timeline {
+    gap: 14px;
+  }
+
+  #experience .tl-summary {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  #experience .tl-company-logo {
+    width: 105px !important;
+    height: 105px !important;
+  }
+
+  #experience .tl-body {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+</style>
+
 </head>
 
 <body>
