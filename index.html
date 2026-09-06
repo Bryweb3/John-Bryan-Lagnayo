@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3282,6 +3281,510 @@ footer{
 }
 </style>
 
+
+<style id="content-creation-showcase">
+/* =========================================================
+   CONTENT CREATION — X SHOWCASE
+   ========================================================= */
+
+.content-creation{
+  margin-top:72px;
+  position:relative;
+}
+
+.content-creation .section-head{
+  margin-bottom:36px;
+}
+
+.content-creation .section-head .eyebrow{
+  color:var(--blue);
+}
+
+.content-creation-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  perspective:1400px;
+}
+
+.content-card{
+  --mx:50%;
+  --my:50%;
+  position:relative;
+  display:block;
+  min-width:0;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background:var(--bg-card);
+  box-shadow:
+    0 18px 55px rgba(0,0,0,.24),
+    inset 0 1px 0 rgba(255,255,255,.035);
+  isolation:isolate;
+  transform:translateY(0);
+  transition:
+    transform .5s var(--ease),
+    border-color .35s ease,
+    box-shadow .35s ease;
+  animation:contentCardFloat 6s ease-in-out infinite;
+  animation-delay:calc(var(--delay) * 1s);
+}
+
+.content-card:nth-child(2){animation-duration:6.7s;}
+.content-card:nth-child(3){animation-duration:5.7s;}
+.content-card:nth-child(4){animation-duration:6.3s;}
+.content-card:nth-child(5){animation-duration:5.9s;}
+.content-card:nth-child(6){animation-duration:6.5s;}
+
+.content-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  background:
+    radial-gradient(
+      260px circle at var(--mx) var(--my),
+      rgba(56,189,248,.16),
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.09),
+      transparent 24%,
+      transparent 70%,
+      rgba(37,99,235,.10)
+    );
+  opacity:.85;
+  transition:opacity .35s ease;
+}
+
+.content-card::after{
+  content:"";
+  position:absolute;
+  left:-130%;
+  top:-20%;
+  width:70%;
+  height:150%;
+  z-index:4;
+  pointer-events:none;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.18),
+    transparent
+  );
+  transform:skewX(-18deg);
+  transition:left .8s cubic-bezier(.16,1,.3,1);
+}
+
+.content-card:hover{
+  transform:translateY(-10px) scale(1.018);
+  border-color:rgba(56,189,248,.52);
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.42),
+    0 0 38px rgba(56,189,248,.13);
+  z-index:5;
+}
+
+.content-card:hover::after{
+  left:145%;
+}
+
+.content-card-media{
+  position:relative;
+  aspect-ratio:16/10;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 30% 30%,rgba(37,99,235,.22),transparent 42%),
+    #080c16;
+}
+
+.content-card-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:
+    transform .75s var(--ease),
+    filter .55s ease;
+  filter:saturate(.9) contrast(1.04);
+}
+
+.content-card:hover .content-card-media img{
+  transform:scale(1.075);
+  filter:saturate(1.12) contrast(1.06);
+}
+
+.content-card-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 48%,
+      rgba(5,7,13,.18) 68%,
+      rgba(5,7,13,.88) 100%
+    );
+  pointer-events:none;
+}
+
+.content-card-body{
+  position:relative;
+  padding:17px 18px 18px;
+  min-height:112px;
+  background:linear-gradient(
+    180deg,
+    rgba(8,12,22,.78),
+    rgba(5,7,13,.96)
+  );
+}
+
+.content-card-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:8px;
+}
+
+.content-card-number{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  letter-spacing:.12em;
+  color:var(--blue);
+  text-transform:uppercase;
+}
+
+.content-card-platform{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:4px 8px;
+  border:1px solid rgba(56,189,248,.18);
+  border-radius:999px;
+  color:var(--text-faint);
+  font-family:'JetBrains Mono',monospace;
+  font-size:8px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.content-card-platform svg{
+  width:11px;
+  height:11px;
+  fill:currentColor;
+}
+
+.content-card-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;
+  line-height:1.35;
+  color:var(--text);
+  font-weight:600;
+}
+
+.content-card-desc{
+  margin-top:6px;
+  color:var(--text-dim);
+  font-size:11px;
+  line-height:1.5;
+}
+
+.content-card-x{
+  position:absolute;
+  right:16px;
+  bottom:15px;
+  width:30px;
+  height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(56,189,248,.18);
+  border-radius:50%;
+  color:var(--text-dim);
+  background:rgba(5,7,13,.6);
+  backdrop-filter:blur(8px);
+  transition:
+    color .3s ease,
+    border-color .3s ease,
+    background .3s ease,
+    transform .3s var(--ease);
+}
+
+.content-card:hover .content-card-x{
+  color:var(--text);
+  border-color:rgba(56,189,248,.55);
+  background:rgba(37,99,235,.16);
+  transform:translateY(-2px) rotate(-6deg);
+}
+
+.content-card-x svg{
+  width:14px;
+  height:14px;
+  fill:currentColor;
+}
+
+@keyframes contentCardFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+
+@media (max-width:900px){
+  .content-creation-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:560px){
+  .content-creation{
+    margin-top:54px;
+  }
+
+  .content-creation-grid{
+    grid-template-columns:1fr;
+    gap:13px;
+  }
+
+  .content-card-body{
+    min-height:104px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .content-card{
+    animation:none;
+  }
+
+  .content-card:hover{
+    transform:translateY(-4px);
+  }
+}
+</style>
+
+
+
+<style>
+.experience-section,
+.experience-section * {
+    box-sizing: border-box;
+}
+
+/* Scoped styling: do not override the portfolio's global body styles. */
+.experience-section {
+    color: #8b94a8;
+}
+
+.experience-section {
+    width: 100%;
+    padding: 0 0 120px;
+}
+
+.experience-section > .wrap {
+    width: 100%;
+}
+
+.experience-section .category {
+    width: 100%;
+    margin-bottom: 42px;
+}
+
+.experience-section .category:last-of-type {
+    margin-bottom: 0;
+}
+
+.experience-section .tags {
+    width: 100%;
+    max-width: none;
+}
+
+.category {
+    margin-bottom: 46px;
+}
+
+.category:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.category-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    color: #657087;
+
+    margin-bottom: 20px;
+
+    /* TEXT GLOW */
+    text-shadow:
+        0 0 5px rgba(120, 145, 190, 0.22),
+        0 0 12px rgba(90, 120, 180, 0.12);
+
+    transition:
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+.category-title:hover {
+    color: #9ca8bd;
+
+    text-shadow:
+        0 0 6px rgba(150, 175, 220, 0.45),
+        0 0 16px rgba(100, 140, 210, 0.25);
+}
+
+
+/* =========================
+   TAG CONTAINER
+========================= */
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 1100px;
+}
+
+
+/* =========================
+   PARTNERSHIP TAG
+========================= */
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 17px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(150, 160, 180, 0.18);
+
+    border-radius: 999px;
+
+    color: #8993a6;
+
+    font-size: 12px;
+    line-height: 1;
+
+    white-space: nowrap;
+
+    /* TEXT GLOW */
+    text-shadow:
+        0 0 5px rgba(140, 160, 195, 0.28),
+        0 0 10px rgba(110, 135, 180, 0.12);
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.tag:hover {
+    background: rgba(255, 255, 255, 0.055);
+
+    border-color: rgba(150, 170, 205, 0.4);
+
+    color: #c3ccdc;
+
+    transform: translateY(-2px);
+
+    /* PILL GLOW */
+    box-shadow:
+        0 0 8px rgba(110, 140, 190, 0.12),
+        0 5px 20px rgba(0, 0, 0, 0.3);
+
+    /* STRONGER TEXT GLOW */
+    text-shadow:
+        0 0 5px rgba(190, 210, 245, 0.65),
+        0 0 12px rgba(130, 165, 220, 0.35),
+        0 0 20px rgba(100, 140, 210, 0.18);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .experience-section {
+        padding: 0 0 72px;
+    }
+
+    .category {
+        margin-bottom: 38px;
+    }
+
+    .category-title {
+        font-size: 10px;
+        letter-spacing: 1.2px;
+        margin-bottom: 17px;
+    }
+
+    .tags {
+        gap: 8px;
+    }
+
+    .tag {
+        padding: 10px 14px;
+        font-size: 11px;
+    }
+}
+
+</style>
+
+<style id="portfolio-spacing-fix">
+/* Unified spacing for the newly separated experience categories */
+.experience-section .category-title{
+  margin-bottom:18px;
+}
+
+.experience-section .category{
+  padding:0;
+}
+
+.experience-section .content-creation{
+  margin-top:68px;
+  padding-top:0;
+}
+
+.experience-section .content-creation .section-head{
+  margin-bottom:34px;
+}
+
+.experience-section .content-creation-grid{
+  width:100%;
+}
+
+@media (max-width:900px){
+  .experience-section .content-creation{
+    margin-top:58px;
+  }
+}
+
+@media (max-width:560px){
+  .experience-section .content-creation{
+    margin-top:48px;
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -5010,9 +5513,7 @@ footer{
 
     <div class="section-head reveal">
       <span class="eyebrow">Other experiences</span>
-
       <h2>More of what I've worked on.</h2>
-
       <p>
         A visual collection of projects, events, content,
         collaborations, and other experiences outside my main roles.
@@ -5022,7 +5523,7 @@ footer{
     <div class="other-experiences-grid reveal-stagger reveal">
 
       <a class="other-experience-card glass" href="https://x.com/Bitzing_io" target="_blank" rel="noopener noreferrer" style="--delay:0">
-        <img src="bitzing.jpg" alt="Other experience 01" loading="lazy">
+        <img src="bitzing.jpg" alt="BitZing — Moderator" loading="lazy">
         <div class="other-experience-overlay">
           <span class="other-experience-number">01</span>
           <span class="other-experience-title">Moderator</span>
@@ -5030,7 +5531,7 @@ footer{
       </a>
 
       <a class="other-experience-card glass" href="https://x.com/FLTR_studio" target="_blank" rel="noopener noreferrer" style="--delay:.35">
-        <img src="filter.jpg" alt="Other experience 02" loading="lazy">
+        <img src="filter.jpg" alt="FLTR Studio — Collab Manager" loading="lazy">
         <div class="other-experience-overlay">
           <span class="other-experience-number">02</span>
           <span class="other-experience-title">Collab Manager</span>
@@ -5038,7 +5539,7 @@ footer{
       </a>
 
       <a class="other-experience-card glass" href="https://x.com/aphweb3" target="_blank" rel="noopener noreferrer" style="--delay:.7">
-        <img src="aph.jpg" alt="Other experience 03" loading="lazy">
+        <img src="aph.jpg" alt="APH Web3 — Collab Manager" loading="lazy">
         <div class="other-experience-overlay">
           <span class="other-experience-number">03</span>
           <span class="other-experience-title">Collab Manager</span>
@@ -5046,7 +5547,7 @@ footer{
       </a>
 
       <a class="other-experience-card glass" href="https://x.com/MetaOasisVR" target="_blank" rel="noopener noreferrer" style="--delay:1.05">
-        <img src="metaoasis.jpg" alt="Other experience 04" loading="lazy">
+        <img src="metaoasis.jpg" alt="MetaOasisVR — Collab Manager" loading="lazy">
         <div class="other-experience-overlay">
           <span class="other-experience-number">04</span>
           <span class="other-experience-title">Collab Manager</span>
@@ -5054,7 +5555,7 @@ footer{
       </a>
 
       <a class="other-experience-card glass" href="https://x.com/ApeAllianceOG" target="_blank" rel="noopener noreferrer" style="--delay:1.4">
-        <img src="apealliance.jpg" alt="Other experience 05" loading="lazy">
+        <img src="apealliance.jpg" alt="Ape Alliance — Collab Manager" loading="lazy">
         <div class="other-experience-overlay">
           <span class="other-experience-number">05</span>
           <span class="other-experience-title">Collab Manager</span>
@@ -5062,232 +5563,254 @@ footer{
       </a>
 
     </div>
-    <title>Collaborations & Experience</title>
-
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background: #070a0f;
-    color: #8b94a8;
-    font-family: "Courier New", Courier, monospace;
-    min-height: 100vh;
-}
-
-.experience-section {
-    width: 100%;
-    padding: 38px 30px 80px;
-}
-
-.category {
-    margin-bottom: 46px;
-}
-
-.category:last-child {
-    margin-bottom: 0;
-}
+  </div>
+</section>
 
 
-/* =========================
-   SECTION TITLE
-========================= */
-
-.category-title {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-
-    color: #657087;
-
-    margin-bottom: 20px;
-
-    /* TEXT GLOW */
-    text-shadow:
-        0 0 5px rgba(120, 145, 190, 0.22),
-        0 0 12px rgba(90, 120, 180, 0.12);
-
-    transition:
-        color 0.3s ease,
-        text-shadow 0.3s ease;
-}
-
-.category-title:hover {
-    color: #9ca8bd;
-
-    text-shadow:
-        0 0 6px rgba(150, 175, 220, 0.45),
-        0 0 16px rgba(100, 140, 210, 0.25);
-}
-
-
-/* =========================
-   TAG CONTAINER
-========================= */
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    max-width: 1100px;
-}
-
-
-/* =========================
-   PARTNERSHIP TAG
-========================= */
-
-.tag {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 11px 17px;
-
-    background: rgba(255, 255, 255, 0.025);
-
-    border: 1px solid rgba(150, 160, 180, 0.18);
-
-    border-radius: 999px;
-
-    color: #8993a6;
-
-    font-size: 12px;
-    line-height: 1;
-
-    white-space: nowrap;
-
-    /* TEXT GLOW */
-    text-shadow:
-        0 0 5px rgba(140, 160, 195, 0.28),
-        0 0 10px rgba(110, 135, 180, 0.12);
-
-    transition:
-        background 0.3s ease,
-        border-color 0.3s ease,
-        color 0.3s ease,
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        text-shadow 0.3s ease;
-}
-
-
-/* =========================
-   HOVER
-========================= */
-
-.tag:hover {
-    background: rgba(255, 255, 255, 0.055);
-
-    border-color: rgba(150, 170, 205, 0.4);
-
-    color: #c3ccdc;
-
-    transform: translateY(-2px);
-
-    /* PILL GLOW */
-    box-shadow:
-        0 0 8px rgba(110, 140, 190, 0.12),
-        0 5px 20px rgba(0, 0, 0, 0.3);
-
-    /* STRONGER TEXT GLOW */
-    text-shadow:
-        0 0 5px rgba(190, 210, 245, 0.65),
-        0 0 12px rgba(130, 165, 220, 0.35),
-        0 0 20px rgba(100, 140, 210, 0.18);
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    .experience-section {
-        padding: 28px 20px 60px;
-    }
-
-    .category {
-        margin-bottom: 38px;
-    }
-
-    .category-title {
-        font-size: 10px;
-        letter-spacing: 1.2px;
-        margin-bottom: 17px;
-    }
-
-    .tags {
-        gap: 8px;
-    }
-
-    .tag {
-        padding: 10px 14px;
-        font-size: 11px;
-    }
-}
-
-</style>
-</head>
-
-<body>
+<!-- =========================================================
+     COLLABORATIONS / COMMUNITY / CONTENT CREATION
+========================================================= -->
 
 <section class="experience-section">
+  <div class="wrap">
 
-    <div class="category">
+    <div class="category reveal">
+      <div class="category-title">
+        Collaborations &amp; Whitelist Partnerships — Collab Manager
+      </div>
 
-        <div class="category-title">
-            Collaborations &amp; Whitelist Partnerships — Collab Manager
-        </div>
+      <div class="tags">
+        <div class="tag">TriplEZ</div>
+        <div class="tag">3Kingdom</div>
+        <div class="tag">MetaZeus</div>
+        <div class="tag">Happy Astronauts</div>
+        <div class="tag">Puffy Eyes</div>
+        <div class="tag">Xioverse</div>
+        <div class="tag">Degen Forest</div>
+        <div class="tag">Savanna Survival</div>
+        <div class="tag">Chikun</div>
+        <div class="tag">DogeWalk</div>
+        <div class="tag">The New Era</div>
+        <div class="tag">Prime Pandas</div>
+        <div class="tag">Cringe Labs</div>
+        <div class="tag">Aptos Diegos</div>
+        <div class="tag">Duck Factory</div>
+        <div class="tag">Stobox</div>
+        <div class="tag">B.Cube</div>
+        <div class="tag">Planet Memes</div>
+      </div>
+    </div>
 
-        <div class="tags">
+    <div class="category reveal">
+      <div class="category-title">
+        Community Moderation
+      </div>
 
-            <div class="tag">TriplEZ</div>
-            <div class="tag">3Kingdom</div>
-            <div class="tag">MetaZeus</div>
-            <div class="tag">Happy Astronauts</div>
-            <div class="tag">Puffy Eyes</div>
-            <div class="tag">Xioverse</div>
-            <div class="tag">Degen Forest</div>
-            <div class="tag">Savanna Survival</div>
-            <div class="tag">Chikun</div>
-            <div class="tag">DogeWalk</div>
-
-            <div class="tag">The New Era </div>
-            <div class="tag">Prime Pandas</div>
-            <div class="tag">Cringe Labs</div>
-            <div class="tag">Aptos Diegos</div>
-            <div class="tag">Duck Factory</div>
-            <div class="tag">Stobox</div>
-            <div class="tag">B.Cube</div>
-            <div class="tag">Planet Memes</div>
-
-        </div>
+      <div class="tags">
+        <div class="tag">BitZing</div>
+        <div class="tag">MadManga NFT</div>
+        <div class="tag">RankerDao</div>
+      </div>
     </div>
 
 
-    <div class="category">
+    <!-- =========================================================
+         CONTENT CREATION — X SHOWCASE
+    ========================================================= -->
 
-        <div class="category-title">
-            Community Moderation
-        </div>
+    <div class="content-creation">
 
-        <div class="tags">
+      <div class="section-head reveal">
+        <span class="eyebrow">Content creation</span>
 
-            <div class="tag">BitZing</div>
-            <div class="tag">MadManga NFT</div>
-            <div class="tag">RankerDao</div>
-            
+        <h2>Content that gets attention.</h2>
 
-        </div>
+        <p>
+          A selection of Web3 gaming, NFT, and ecosystem content I've created,
+          published on X and built to turn ideas into attention.
+        </p>
+      </div>
+
+      <div class="content-creation-grid reveal-stagger reveal">
+
+        <a class="content-card glass"
+           href="https://x.com/Zennxz/status/1843571813642842354?s=20"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="--delay:0"
+           onmousemove="this.style.setProperty('--mx', event.offsetX + 'px'); this.style.setProperty('--my', event.offsetY + 'px');">
+          <div class="content-card-media">
+            <img src="arcadexbry.png" alt="Web3 Gaming Content" loading="lazy">
+          </div>
+          <div class="content-card-body">
+            <div class="content-card-meta">
+              <span class="content-card-number">01 / Arcade Galaxy</span>
+              <span class="content-card-platform">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+                </svg>
+                X
+              </span>
+            </div>
+            <div class="content-card-title">Web3 Gaming Content</div>
+            <div class="content-card-desc">Gaming posts, showcases, and ecosystem content.</div>
+            <span class="content-card-x" aria-label="View on X">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a class="content-card glass"
+           href="https://x.com/Zennxz/status/1847566636053909834?s=20"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="--delay:.25s"
+           onmousemove="this.style.setProperty('--mx', event.offsetX + 'px'); this.style.setProperty('--my', event.offsetY + 'px');">
+          <div class="content-card-media">
+            <img src="sparkballxbry.png" alt="NFT Content" loading="lazy">
+          </div>
+          <div class="content-card-body">
+            <div class="content-card-meta">
+              <span class="content-card-number">02 / Sparkball</span>
+              <span class="content-card-platform">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 19.77H5.117L17.083 19.77Z"/>
+                </svg>
+                X
+              </span>
+            </div>
+            <div class="content-card-title">Gaming Content</div>
+            <div class="content-card-desc">Showcase gameplay and scrim</div>
+            <span class="content-card-x" aria-label="View on X">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a class="content-card glass"
+           href="https://x.com/Zennxz/status/1846545814539432116?s=20"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="--delay:.5s"
+           onmousemove="this.style.setProperty('--mx', event.offsetX + 'px'); this.style.setProperty('--my', event.offsetY + 'px');">
+          <div class="content-card-media">
+            <img src="bryxmoonray.png" alt="Gaming Campaign Content" loading="lazy">
+          </div>
+          <div class="content-card-body">
+            <div class="content-card-meta">
+              <span class="content-card-number">03 / Moonray</span>
+              <span class="content-card-platform">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+                </svg>
+                X
+              </span>
+            </div>
+            <div class="content-card-title">Gaming Campaign Content</div>
+            <div class="content-card-desc">Campaign posts and creative content for Web3 games.</div>
+            <span class="content-card-x" aria-label="View on X">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 19.77H5.117L17.083 19.77Z"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a class="content-card glass"
+           href="https://x.com/Zennxz/status/1840326290483933619?s=20"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="--delay:.75s"
+           onmousemove="this.style.setProperty('--mx', event.offsetX + 'px'); this.style.setProperty('--my', event.offsetY + 'px');">
+          <div class="content-card-media">
+            <img src="bryxl3e7.png" alt="Community Content" loading="lazy">
+          </div>
+          <div class="content-card-body">
+            <div class="content-card-meta">
+              <span class="content-card-number">04 / L3E7</span>
+              <span class="content-card-platform">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 19.77H5.117L17.083 19.77Z"/>
+                </svg>
+                X
+              </span>
+            </div>
+            <div class="content-card-title">Play Test Video Content</div>
+            <div class="content-card-desc">Alpha test gameplay for L3E7 and game experiences.</div>
+            <span class="content-card-x" aria-label="View on X">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a class="content-card glass"
+           href="https://x.com/Zennxz/status/1819369256196493719?s=20"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="--delay:1s"
+           onmousemove="this.style.setProperty('--mx', event.offsetX + 'px'); this.style.setProperty('--my', event.offsetY + 'px');">
+          <div class="content-card-media">
+            <img src="bryxproducers.png" alt="Project Showcase Content" loading="lazy">
+          </div>
+          <div class="content-card-body">
+            <div class="content-card-meta">
+              <span class="content-card-number">05 / Producers NFT</span>
+              <span class="content-card-platform">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 19.77H5.117L17.083 19.77Z"/>
+                </svg>
+                X
+              </span>
+            </div>
+            <div class="content-card-title">NFT Alpha call</div>
+            <div class="content-card-desc">Project highlights and updates, Alpha Call</div>
+            <span class="content-card-x" aria-label="View on X">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 19.77H5.117L17.083 19.77Z"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a class="content-card glass"
+           href="https://x.com/Zennxz/status/1836030920937361917?s=20"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="--delay:1.25s"
+           onmousemove="this.style.setProperty('--mx', event.offsetX + 'px'); this.style.setProperty('--my', event.offsetY + 'px');">
+          <div class="content-card-media">
+            <img src="bryxxendfinance.png" alt="Web3 Ecosystem Content" loading="lazy">
+          </div>
+          <div class="content-card-body">
+            <div class="content-card-meta">
+              <span class="content-card-number">06 / Xend Finance</span>
+              <span class="content-card-platform">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231-5.214 6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Z"/>
+                </svg>
+                X
+              </span>
+            </div>
+            <div class="content-card-title">DeFi</div>
+            <div class="content-card-desc">Informative, Ecosystem updates.</div>
+            <span class="content-card-x" aria-label="View on X">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
     </div>
+
   </div>
-  
 </section>
 
 
@@ -7597,4 +8120,3 @@ profileImage.src = "./bryprofile1.png";
 
 </body>
 </html>
-```
