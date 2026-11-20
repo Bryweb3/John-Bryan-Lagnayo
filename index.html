@@ -227,6 +227,18 @@ main{position:relative;z-index:10}
 .result p{font-size:14px}
 .result .k{display:block;margin-bottom:5px}
 
+/* ---------- MOTION reels ---------- */
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+@media (max-width:560px){.reels{grid-template-columns:1fr 1fr}}
+.reel{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:rgba(2,3,10,.5)}
+.reel video,.reel iframe{display:block;width:100%;aspect-ratio:16/9;border:0;background:#000;object-fit:contain}
+.reel.tall video,.reel.tall iframe{aspect-ratio:9/16}
+.reel figcaption{padding:8px 10px 10px}
+.reel figcaption .k{display:block;font-size:9.5px}
+.reel figcaption b{display:block;margin-top:4px;font:600 12.5px/1.3 var(--f-display)}
+.reel-slot{aspect-ratio:16/9;border-radius:12px;border:1px dashed var(--line-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--dim);font:500 9.5px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;background:rgba(2,3,10,.35)}
+.reel-slot i{width:0;height:0;border-left:12px solid var(--cyan);border-top:8px solid transparent;border-bottom:8px solid transparent;opacity:.6}
+
 /* ---------- CONTENT panel ---------- */
 .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
 @media (max-width:520px){.posts{grid-template-columns:1fr 1fr}}
@@ -379,11 +391,12 @@ html.c-pick body{cursor:none}
   <a href="#origin">Origin <span>00</span></a>
   <a href="#work">Work <span>01</span></a>
   <a href="#content">Content <span>02</span></a>
-  <a href="#services">Services <span>03</span></a>
-  <a href="#network">Network <span>04</span></a>
-  <a href="#about">About <span>05</span></a>
-  <a href="#gallery">Gallery <span>06</span></a>
-  <a href="#contact">Contact <span>07</span></a>
+  <a href="#motion">Motion <span>03</span></a>
+  <a href="#services">Services <span>04</span></a>
+  <a href="#network">Network <span>05</span></a>
+  <a href="#about">About <span>06</span></a>
+  <a href="#gallery">Gallery <span>07</span></a>
+  <a href="#contact">Contact <span>08</span></a>
 </nav>
 
 <nav class="hud" aria-label="Flight path">
@@ -392,11 +405,12 @@ html.c-pick body{cursor:none}
     <li><a href="#origin" data-sec="origin"><b>00</b>Origin</a></li>
     <li><a href="#work" data-sec="work"><b>01</b>Work</a></li>
     <li><a href="#content" data-sec="content"><b>02</b>Content</a></li>
-    <li><a href="#services" data-sec="services"><b>03</b>Services</a></li>
-    <li><a href="#network" data-sec="network"><b>04</b>Network</a></li>
-    <li><a href="#about" data-sec="about"><b>05</b>About</a></li>
-    <li><a href="#gallery" data-sec="gallery"><b>06</b>Gallery</a></li>
-    <li><a href="#contact" data-sec="contact"><b>07</b>Contact</a></li>
+    <li><a href="#motion" data-sec="motion"><b>03</b>Motion</a></li>
+    <li><a href="#services" data-sec="services"><b>04</b>Services</a></li>
+    <li><a href="#network" data-sec="network"><b>05</b>Network</a></li>
+    <li><a href="#about" data-sec="about"><b>06</b>About</a></li>
+    <li><a href="#gallery" data-sec="gallery"><b>07</b>Gallery</a></li>
+    <li><a href="#contact" data-sec="contact"><b>08</b>Contact</a></li>
   </ol>
 </nav>
 <div class="readout" aria-hidden="true"><span id="roSector">Sector · <b>Origin</b></span><br><span id="roZ">Z +000.0</span></div>
@@ -422,7 +436,7 @@ html.c-pick body{cursor:none}
     </div>
     <dl class="facts-row enter" style="--d:7">
       <div><dt class="k">Based in</dt><dd>Philippines</dd></div>
-      <div><dt class="k">Focus</dt><dd>DeFi · NFTs · GameFi · Web3 Infra</dd></div>
+      <div><dt class="k">Focus</dt><dd>DeFi · NFTs · GameFi · AI · Web3 Infra</dd></div>
       <div><dt class="k">Languages</dt><dd>English · Filipino</dd></div>
     </dl>
   </div>
@@ -437,8 +451,8 @@ html.c-pick body{cursor:none}
   <div class="stop" data-stop="gate" data-side="center">
     <div class="panel" style="--pw:600px">
       <span class="tag">01 · Selected work</span>
-      <h2 class="h2" id="work-title" style="font-size:clamp(2rem,5vw,4rem)">Eight projects.<br><em>One mission:</em> growth.</h2>
-      <p class="lede" style="margin-inline:auto;max-width:46ch">Each logo ahead is a team I’ve worked with — community management, marketing, partnership outreach, and collaboration management across gaming, DeFi, NFTs, and Web3 infrastructure.</p>
+      <h2 class="h2" id="work-title" style="font-size:clamp(2rem,5vw,4rem)">Project<br><em>Highlights</em></h2>
+      <p class="lede" style="margin-inline:auto;max-width:46ch">Teams I’ve worked with — community management, marketing, partnership outreach, and collaboration management across gaming, DeFi, NFTs, wallets, AI, and Web3 infrastructure.</p>
     </div>
   </div>
 
@@ -570,6 +584,53 @@ html.c-pick body{cursor:none}
       </ul>
     </div>
   </article>
+
+  <article class="stop" data-stop="role" data-side="right" data-planet="8">
+    <div class="panel">
+      <div class="role-head">
+        <img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/kyvoralogo.png" alt="" width="54" height="54" loading="lazy">
+        <div><h3><a href="https://x.com/getkyvora" target="_blank" rel="noopener noreferrer">Kyvora Wallet<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg><span class="sr-only"> on X (opens in new tab)</span></a></h3><p>Marketing</p><span class="pill">Wallet · Web3</span></div>
+        <div class="role-num" aria-hidden="true"><b>09</b></div>
+      </div>
+      <ul class="ticks">
+        <li><b>Community growth:</b> grew the Kyvora Discord community.</li>
+        <li><b>Social channels:</b> managed and grew the LinkedIn, TikTok, and X accounts.</li>
+        <li><b>Content:</b> created launch posts, graphics, and promo videos for product releases.</li>
+        <li><b>Partnerships:</b> supported partnership outreach and relationship building.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="stop" data-stop="role" data-side="left" data-planet="9">
+    <div class="panel">
+      <div class="role-head">
+        <img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/bearlyawesomelogo.jpg" alt="" width="54" height="54" loading="lazy">
+        <div><h3><a href="https://store.steampowered.com/app/3560160" target="_blank" rel="noopener noreferrer">Bearly Awesome<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg><span class="sr-only"> on Steam (opens in new tab)</span></a></h3><p>Marketing</p><span class="pill">Indie Game · Steam</span></div>
+        <div class="role-num" aria-hidden="true"><b>10</b></div>
+      </div>
+      <ul class="ticks">
+        <li><b>Steam wishlists:</b> drove wishlist growth for the game on Steam.</li>
+        <li><b>Bilibili:</b> posted and managed game content on the Bilibili platform.</li>
+        <li><b>X support:</b> helped with X content and community engagement.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="stop" data-stop="role" data-side="right" data-planet="10">
+    <div class="panel">
+      <div class="role-head">
+        <img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/mayaxlogo.jpg" alt="" width="54" height="54" loading="lazy">
+        <div><h3><a href="https://x.com/AI_MAYAX" target="_blank" rel="noopener noreferrer">MAYA AI<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg><span class="sr-only"> on X (opens in new tab)</span></a></h3><p>X Account Manager</p><span class="pill">AI</span></div>
+        <div class="role-num" aria-hidden="true"><b>11</b></div>
+      </div>
+      <ul class="ticks">
+        <li><b>X account:</b> handled and grew the official MayaX account on X.</li>
+        <li><b>Daily engagement:</b> posting, replies, and conversations in the brand’s voice.</li>
+        <li><b>Outreach:</b> reached out to projects for partnerships and collaborations.</li>
+        <li><b>Motion content:</b> created motion videos showcasing what MAYA is building.</li>
+      </ul>
+    </div>
+  </article>
 </section>
 
 <!-- =====================================================
@@ -594,12 +655,54 @@ html.c-pick body{cursor:none}
 </section>
 
 <!-- =====================================================
-     03 · SERVICES
+     03 · MOTION — videos go here
+     ===================================================== -->
+<section id="motion" aria-labelledby="motion-title">
+  <div class="stop" data-stop="motion" data-side="right">
+    <div class="panel panel--wide" style="--pw:640px">
+      <span class="tag">03 · Motion video editor</span>
+      <h2 class="h2" id="motion-title">Motion that <em>moves</em> people.</h2>
+      <p class="lede">Promo videos, launch teasers, and motion content I’ve edited for Web3 projects. Showreel coming soon.</p>
+      <!-- Videos live in the repo root as motion1.mp4 … motion6.mp4.
+           To add another: copy one <figure> block and change the number.
+           Add a title under the number with  <b>Video title</b>  inside <figcaption>. -->
+      <div class="reels" id="motionReels">
+        <figure class="reel">
+          <video src="motion1.mp4#t=0.1" controls playsinline preload="metadata"></video>
+          <figcaption><span class="k">Motion · 01</span></figcaption>
+        </figure>
+        <figure class="reel">
+          <video src="motion2.mp4#t=0.1" controls playsinline preload="metadata"></video>
+          <figcaption><span class="k">Motion · 02</span></figcaption>
+        </figure>
+        <figure class="reel">
+          <video src="motion3.mp4#t=0.1" controls playsinline preload="metadata"></video>
+          <figcaption><span class="k">Motion · 03</span></figcaption>
+        </figure>
+        <figure class="reel">
+          <video src="motion4.mp4#t=0.1" controls playsinline preload="metadata"></video>
+          <figcaption><span class="k">Motion · 04</span></figcaption>
+        </figure>
+        <figure class="reel">
+          <video src="motion5.mp4#t=0.1" controls playsinline preload="metadata"></video>
+          <figcaption><span class="k">Motion · 05</span></figcaption>
+        </figure>
+        <figure class="reel">
+          <video src="motion6.mp4#t=0.1" controls playsinline preload="metadata"></video>
+          <figcaption><span class="k">Motion · 06</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     04 · SERVICES
      ===================================================== -->
 <section id="services" aria-labelledby="services-title">
   <div class="stop" data-stop="services" data-side="right">
     <div class="panel panel--wide" style="--pw:700px">
-      <span class="tag">03 · Services</span>
+      <span class="tag">04 · Services</span>
       <h2 class="h2" id="services-title">Five ways I help <em>Web3 teams</em> grow.</h2>
       <ul class="svc">
         <li><h3><b>01</b>Community Growth</h3><p>Scaling communities through engagement, moderation, and onboarding.</p><ul class="chips"><li>Community engagement</li><li>Moderation</li><li>Member onboarding</li><li>Community campaigns</li></ul></li>
@@ -617,12 +720,12 @@ html.c-pick body{cursor:none}
 </section>
 
 <!-- =====================================================
-     04 · NETWORK
+     05 · NETWORK
      ===================================================== -->
 <section id="network" aria-labelledby="network-title">
   <div class="stop" data-stop="network" data-side="left">
     <div class="panel panel--wide">
-      <span class="tag">04 · Network</span>
+      <span class="tag">05 · Network</span>
       <h2 class="h2" id="network-title">Collaborations &amp; <em>community</em> work.</h2>
       <p class="lede">Projects, collaborations, and moderation roles beyond my main positions.</p>
       <div class="orgs">
@@ -643,13 +746,13 @@ html.c-pick body{cursor:none}
 </section>
 
 <!-- =====================================================
-     05 · ABOUT
+     06 · ABOUT
      ===================================================== -->
 <section id="about" aria-labelledby="about-title">
   <div class="stop" data-stop="about" data-side="right">
     <div class="panel panel--wide about">
       <picture><img class="about-photo" src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/deepprofile.png" alt="John Bryan Lagnayo seated with arms resting on a table, looking to the side" width="820" height="853" loading="lazy"></picture>
-      <span class="tag">05 · About</span>
+      <span class="tag">06 · About</span>
       <h2 class="h2" id="about-title">Web3 growth, from the <em>ground up</em>.</h2>
       <p>I’m a <strong>Web3 Business Development &amp; Community Growth Professional</strong> focused on building strategic partnerships, growing communities, and helping Web3 projects expand their reach.</p>
       <p>I’ve worked across <strong>DeFi, NFTs, GameFi, AI, and Web3 infrastructure</strong>, collaborating with founders, KOLs, creators, guilds, and communities to drive partnerships and growth.</p>
@@ -668,15 +771,15 @@ html.c-pick body{cursor:none}
 </section>
 
 <!-- =====================================================
-     06 · GALLERY — every image in the repo, with its name
+     07 · GALLERY — every image in the repo, with its name
      ===================================================== -->
 <section id="gallery" aria-labelledby="gallery-title">
   <div class="stop" data-stop="gallery" data-side="left">
     <div class="panel panel--wide" style="--pw:720px">
-      <span class="tag">06 · Gallery</span>
+      <span class="tag">07 · Gallery</span>
       <h2 class="h2" id="gallery-title">Projects I’ve <em>worked with</em>.</h2>
-      <p class="subhead"><span class="k">Team &amp; project logos</span><span class="k">13</span></p>
-      <div class="gal gal--logos"><a class="gtile" data-g="logo" href="https://x.com/EarnAlliance" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/EarnAlliance.png" alt="Earn Alliance logo" width="120" height="120" loading="lazy"><b>Earn Alliance</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/ApeAllianceOG" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/apealliance.jpg" alt="Ape Alliance logo" width="120" height="120" loading="lazy"><b>Ape Alliance</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/aphweb3" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/aph.jpg" alt="APH Web3 logo" width="120" height="120" loading="lazy"><b>APH Web3</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/arcadegalaxy_" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/arcadegalaxy.jpg" alt="Arcade Galaxy logo" width="120" height="120" loading="lazy"><b>Arcade Galaxy</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/BanaProtocol" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/banaprotocol.jpg" alt="Bana Protocol logo" width="120" height="120" loading="lazy"><b>Bana Protocol</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/bigaarcade" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/bigaarcade.png" alt="Biga Arcade logo" width="120" height="120" loading="lazy"><b>Biga Arcade</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/Bitzing_io" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/bitzing.jpg" alt="BitZing logo" width="120" height="120" loading="lazy"><b>BitZing</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/ChainZilla_" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/chainzilla.jpg" alt="ChainZilla logo" width="120" height="120" loading="lazy"><b>ChainZilla</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/FLTR_studio" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/filter.jpg" alt="FLTR Studio logo" width="120" height="120" loading="lazy"><b>FLTR Studio</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/LiveArtX" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/liveart.jpg" alt="LiveArt logo" width="120" height="120" loading="lazy"><b>LiveArt</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/MetaOasisVR" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/metaoasis.jpg" alt="MetaOasisVR logo" width="120" height="120" loading="lazy"><b>MetaOasisVR</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/wicrypt" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/wicrypt.jpg" alt="Wicrypt logo" width="120" height="120" loading="lazy"><b>Wicrypt</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/xendfinance" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/xendfinance.jpg" alt="Xend Finance logo" width="120" height="120" loading="lazy"><b>Xend Finance</b><span class="sr-only"> (opens in new tab)</span></a></div>
+      <p class="subhead"><span class="k">Team &amp; project logos</span><span class="k">16</span></p>
+      <div class="gal gal--logos"><a class="gtile" data-g="logo" href="https://x.com/getkyvora" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/kyvoralogo.png" alt="Kyvora Wallet logo" width="120" height="120" loading="lazy"><b>Kyvora Wallet</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://store.steampowered.com/app/3560160" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/bearlyawesomelogo.jpg" alt="Bearly Awesome logo" width="120" height="120" loading="lazy"><b>Bearly Awesome</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/AI_MAYAX" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/mayaxlogo.jpg" alt="MAYA AI logo" width="120" height="120" loading="lazy"><b>MAYA AI</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/EarnAlliance" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/EarnAlliance.png" alt="Earn Alliance logo" width="120" height="120" loading="lazy"><b>Earn Alliance</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/ApeAllianceOG" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/apealliance.jpg" alt="Ape Alliance logo" width="120" height="120" loading="lazy"><b>Ape Alliance</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/aphweb3" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/aph.jpg" alt="APH Web3 logo" width="120" height="120" loading="lazy"><b>APH Web3</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/arcadegalaxy_" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/arcadegalaxy.jpg" alt="Arcade Galaxy logo" width="120" height="120" loading="lazy"><b>Arcade Galaxy</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/BanaProtocol" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/banaprotocol.jpg" alt="Bana Protocol logo" width="120" height="120" loading="lazy"><b>Bana Protocol</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/bigaarcade" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/bigaarcade.png" alt="Biga Arcade logo" width="120" height="120" loading="lazy"><b>Biga Arcade</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/Bitzing_io" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/bitzing.jpg" alt="BitZing logo" width="120" height="120" loading="lazy"><b>BitZing</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/ChainZilla_" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/chainzilla.jpg" alt="ChainZilla logo" width="120" height="120" loading="lazy"><b>ChainZilla</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/FLTR_studio" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/filter.jpg" alt="FLTR Studio logo" width="120" height="120" loading="lazy"><b>FLTR Studio</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/LiveArtX" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/liveart.jpg" alt="LiveArt logo" width="120" height="120" loading="lazy"><b>LiveArt</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/MetaOasisVR" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/metaoasis.jpg" alt="MetaOasisVR logo" width="120" height="120" loading="lazy"><b>MetaOasisVR</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/wicrypt" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/wicrypt.jpg" alt="Wicrypt logo" width="120" height="120" loading="lazy"><b>Wicrypt</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile" data-g="logo" href="https://x.com/xendfinance" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/xendfinance.jpg" alt="Xend Finance logo" width="120" height="120" loading="lazy"><b>Xend Finance</b><span class="sr-only"> (opens in new tab)</span></a></div>
       <p class="subhead"><span class="k">Content on X</span><span class="k">06</span></p>
       <div class="gal gal--wide"><a class="gtile wide" data-g="content" href="https://x.com/Zennxz/status/1843571813642842354?s=20" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/arcadexbry.png" alt="Arcade Galaxy — Web3 Gaming Content" width="1200" height="675" loading="lazy"><b>Arcade Galaxy — Web3 Gaming Content</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile wide" data-g="content" href="https://x.com/Zennxz/status/1847566636053909834?s=20" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/sparkballxbry.png" alt="Sparkball — Gaming Content" width="1200" height="675" loading="lazy"><b>Sparkball — Gaming Content</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile wide" data-g="content" href="https://x.com/Zennxz/status/1846545814539432116?s=20" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/bryxmoonray.png" alt="Moonray — Gaming Campaign" width="1200" height="675" loading="lazy"><b>Moonray — Gaming Campaign</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile wide" data-g="content" href="https://x.com/Zennxz/status/1840326290483933619?s=20" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/bryxl3e7.png" alt="L3E7 — Play Test Video" width="1200" height="675" loading="lazy"><b>L3E7 — Play Test Video</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile wide" data-g="content" href="https://x.com/Zennxz/status/1819369256196493719?s=20" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/bryxproducers.png" alt="Producers NFT — Alpha Call" width="1200" height="675" loading="lazy"><b>Producers NFT — Alpha Call</b><span class="sr-only"> (opens in new tab)</span></a><a class="gtile wide" data-g="content" href="https://x.com/Zennxz/status/1836030920937361917?s=20" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Bryweb3/John-Bryan-Lagnayo/main/bryxxendfinance.png" alt="Xend Finance — DeFi Content" width="1200" height="675" loading="lazy"><b>Xend Finance — DeFi Content</b><span class="sr-only"> (opens in new tab)</span></a></div>
     </div>
@@ -684,12 +787,12 @@ html.c-pick body{cursor:none}
 </section>
 
 <!-- =====================================================
-     07 · CONTACT
+     08 · CONTACT
      ===================================================== -->
 <section id="contact" aria-labelledby="contact-title">
   <div class="stop" data-stop="contact" data-side="left">
     <div class="panel panel--wide">
-      <span class="tag">07 · Contact</span>
+      <span class="tag">08 · Contact</span>
       <h2 class="contact-title" id="contact-title">Let’s build something in <span>Web3.</span></h2>
       <p class="lede">Looking for someone who understands Web3 communities, partnerships, marketing, and growth? Let’s connect.</p>
       <div class="channels">
@@ -747,6 +850,12 @@ safe('copy', function(){
     if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(v).then(function(){ show('Discord username copied — ' + v); }, function(){ show('Discord: ' + v); });
     else show('Discord: ' + v);
   });
+});
+
+/* ---------------- Motion reels: one video plays at a time ---------------- */
+safe('reels', function(){
+  var vs = doc.querySelectorAll('#motionReels video');
+  vs.forEach(function(v){ v.addEventListener('play', function(){ vs.forEach(function(o){ if (o !== v) o.pause(); }); }); });
 });
 
 /* ---------------- Count-up ---------------- */
@@ -868,33 +977,36 @@ function startWorld(){
 
   /* ---------- Stars + nebula ---------- */
   (function(){
-    var N = small ? 2200 : 4200, p = new Float32Array(N * 3), col = new Float32Array(N * 3);
+    var EXT = Math.max(0, doc.querySelectorAll('[data-stop="role"]').length - 8) * 17 + 34, N = (small ? 2200 : 4200) + Math.round(EXT * 8), p = new Float32Array(N * 3), col = new Float32Array(N * 3);
     var palette = [new THREE.Color(0xffffff), new THREE.Color(0xa9c1ff), new THREE.Color(0x66e3ff), new THREE.Color(0xc5b5ff)];
     for (var i = 0; i < N; i++){
-      p[i*3] = (Math.random() - .5) * 140; p[i*3+1] = (Math.random() - .5) * 90; p[i*3+2] = 40 - Math.random() * 420;
+      p[i*3] = (Math.random() - .5) * 140; p[i*3+1] = (Math.random() - .5) * 90; p[i*3+2] = 40 - Math.random() * (420 + EXT);
       var c = palette[(Math.random() * palette.length) | 0]; col[i*3] = c.r; col[i*3+1] = c.g; col[i*3+2] = c.b;
     }
     var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(p, 3)); g.setAttribute('color', new THREE.BufferAttribute(col, 3));
     var stars = new THREE.Points(g, new THREE.PointsMaterial({ size:.22, map:DOT, vertexColors:true, transparent:true, depthWrite:false, opacity:.9, sizeAttenuation:true }));
     scene.add(stars);
-    var neb = [[0x3d6dff, -30, 18, -60, 90], [0x9b7bff, 40, -20, -140, 110], [0x66e3ff, -45, 10, -220, 100], [0x3d6dff, 30, 25, -300, 120], [0x9b7bff, -20, -25, -360, 110]];
+    var neb = [[0x3d6dff, -30, 18, -60, 90], [0x9b7bff, 40, -20, -140, 110], [0x66e3ff, -45, 10, -220, 100], [0x3d6dff, 30, 25, -300, 120], [0x9b7bff, -20, -25, -360, 110], [0x66e3ff, 35, 15, -360 - EXT, 120], [0x3d6dff, -30, -15, -420 - EXT, 120]];
     neb.forEach(function(n){ var s = glowSprite(n[0], n[4], .16); s.position.set(n[1], n[2], n[3]); scene.add(s); });
   })();
 
   /* ---------- Stop layout (world positions) ---------- */
+  // Every role card past the 8th pushes the later stops further down the flight path
+  var NP = doc.querySelectorAll('[data-stop="role"]').length, SH = Math.max(0, NP - 8) * 17, SM = SH + 34; // SM: room for the Motion stop
   var L = {
     origin:   new THREE.Vector3(0, 0, 0),
     gate:     new THREE.Vector3(0, 0, -26),
     planets:  [],
-    content:  new THREE.Vector3(2.4, 0, -200),
-    services: new THREE.Vector3(0, 0, -236),
-    network:  new THREE.Vector3(0, 0, -270),
-    about:    new THREE.Vector3(0, 0, -302),
-    gallery:  new THREE.Vector3(0, .4, -334),
-    contact:  new THREE.Vector3(0, -.5, -376)
+    content:  new THREE.Vector3(2.4, 0, -200 - SH),
+    motion:   new THREE.Vector3(0, 0, -236 - SH),
+    services: new THREE.Vector3(0, 0, -236 - SM),
+    network:  new THREE.Vector3(0, 0, -270 - SM),
+    about:    new THREE.Vector3(0, 0, -302 - SM),
+    gallery:  new THREE.Vector3(0, .4, -334 - SM),
+    contact:  new THREE.Vector3(0, -.5, -376 - SM)
   };
-  var PLANET_Y = [.8, -.6, .5, -.9, .7, -.4, .9, -.7];
-  for (var i = 0; i < 8; i++) L.planets.push(new THREE.Vector3(i % 2 ? 5.5 : -5.5, PLANET_Y[i], -52 - i * 17));
+  var PLANET_Y = [.8, -.6, .5, -.9, .7, -.4, .9, -.7, .6, -.8, .4, -.5];
+  for (var i = 0; i < NP; i++) L.planets.push(new THREE.Vector3(i % 2 ? 5.5 : -5.5, PLANET_Y[i % PLANET_Y.length], -52 - i * 17));
 
   /* ---------- 00 ORIGIN: 3D relief portrait (cutout photo + depth map) ---------- */
   var PH = 3.7, PW = PH * .75;
@@ -969,9 +1081,9 @@ function startWorld(){
   }
   var gateMain = gate(L.gate.z, 4.2);
   var gateLbl = label('SECTOR 01 · WORK', { size:30, scale:.55 }); gateLbl.position.set(0, 5.3, L.gate.z); scene.add(gateLbl);
-  [-176, -207, -241, -276, -309, -350].forEach(function(z){ gate(z, 5.2); });
+  [-176 - SH, -207 - SH, -241 - SH, -241 - SM, -276 - SM, -309 - SM, -350 - SM].forEach(function(z){ gate(z, 5.2); });
 
-  /* ---------- 01 WORK: planets ---------- */
+  /* ---------- 01 WORK: holo cards ---------- */
   var planetPalettes = [
     [0xd9e2ff, 0x7d8db8, 0x66e3ff],  // LiveArt — silver
     [0xffd36b, 0xb36b12, 0xfff1b8],  // ChainZilla — gold
@@ -980,7 +1092,10 @@ function startWorld(){
     [0xffb347, 0x8a3b0b, 0xffe2a8],  // Wicrypt — amber
     [0x2f80ff, 0x08245c, 0x66e3ff],  // Xend — azure
     [0xff4fa3, 0x4b0f6b, 0x66e3ff],  // Biga — magenta
-    [0xff7a3d, 0x5a1608, 0xffd36b]   // Earn — orange
+    [0xff7a3d, 0x5a1608, 0xffd36b],  // Earn — orange
+    [0x8fe8ff, 0x0b3a8a, 0x4fd2ff],  // Kyvora — ice blue
+    [0xffc94a, 0x8a4a0b, 0xffe9a8],  // Bearly Awesome — honey
+    [0x3cf0c8, 0x5a1b8a, 0xff5fc8]   // MAYA AI — teal/pink
   ];
   var NOISE = [
     'float h(vec3 p){ return fract(sin(dot(p, vec3(127.1,311.7,74.7))) * 43758.5453); }',
@@ -997,44 +1112,105 @@ function startWorld(){
     ' float fr = pow(1.0 - max(dot(n, normalize(vV)), 0.0), 2.5); col += c3 * fr * .9; gl_FragColor = vec4(col, 1.0); }';
   var atmoFS = 'uniform vec3 c3; varying vec3 vN; varying vec3 vP; varying vec3 vV; void main(){ float fr = pow(1.0 - abs(dot(normalize(vN), normalize(vV))), 3.0); gl_FragColor = vec4(c3 * fr, fr); }';
 
-  var roleLinks = Array.prototype.slice.call(doc.querySelectorAll('[data-stop="role"]')).map(function(a){ var l = a.querySelector('h3 a'), im = a.querySelector('.role-head img'); return { url:l.href, name:l.firstChild.textContent.trim(), img:im.getAttribute('src') }; });
-  function bigLogo(src){
-    var c = doc.createElement('canvas'); c.width = c.height = 512; var g = c.getContext('2d');
-    g.fillStyle = '#0a1430'; g.beginPath(); g.arc(256,256,256,0,Math.PI*2); g.fill();
-    var t = new THREE.CanvasTexture(c); t.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    var im = new Image(); im.crossOrigin = 'anonymous';
-    im.onload = function(){ g.save(); g.beginPath(); g.arc(256,256,250,0,Math.PI*2); g.clip(); g.drawImage(im, 6, 6, 500, 500); g.restore(); t.needsUpdate = true; };
-    im.src = src; return t;
+  var roleLinks = Array.prototype.slice.call(doc.querySelectorAll('[data-stop="role"]')).map(function(a){ var l = a.querySelector('h3 a'), h = a.querySelector('h3'), im = a.querySelector('.role-head img'); var rp = a.querySelector('.role-head p'), pl = a.querySelector('.pill'); return { url:l ? l.href : '', name:(l ? l.firstChild.textContent : h.textContent).trim(), img:im.getAttribute('src'), role:rp ? rp.textContent.trim() : '', cat:pl ? pl.textContent.trim() : '' }; });
+  // Each project = a holographic card that assembles as the camera arrives
+  function cardTex(info, pal, num){
+    var W = 640, H = 800, c = doc.createElement('canvas'); c.width = W; c.height = H; var g = c.getContext('2d');
+    var col = '#' + new THREE.Color(pal[2]).getHexString();
+    var tex = new THREE.CanvasTexture(c); tex.anisotropy = renderer.capabilities.getMaxAnisotropy(); tex.minFilter = THREE.LinearFilter;
+    var logo = null;
+    function rr(x, y, w, h, r){ g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); }
+    function draw(){
+      g.clearRect(0, 0, W, H);
+      rr(16, 16, W - 32, H - 32, 46);
+      var bg = g.createLinearGradient(0, 0, W, H); bg.addColorStop(0, 'rgba(12,20,52,.94)'); bg.addColorStop(1, 'rgba(4,6,20,.94)'); g.fillStyle = bg; g.fill();
+      g.save(); g.clip();
+      var rg = g.createRadialGradient(W / 2, 280, 10, W / 2, 280, 440); rg.addColorStop(0, col + '55'); rg.addColorStop(1, col + '00'); g.fillStyle = rg; g.fillRect(0, 0, W, H);
+      g.strokeStyle = 'rgba(150,175,255,.06)'; g.lineWidth = 1; for (var y = 40; y < H; y += 28){ g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
+      g.restore();
+      g.save(); g.shadowColor = col; g.shadowBlur = 30; g.strokeStyle = col; g.lineWidth = 4; rr(16, 16, W - 32, H - 32, 46); g.stroke(); g.restore();
+      g.textBaseline = 'top'; g.textAlign = 'left'; g.font = '500 22px "JetBrains Mono", monospace'; g.fillStyle = col; g.fillText('PROJECT · ' + num, 52, 56);
+      g.textAlign = 'right'; g.font = '800 50px Unbounded, Inter, sans-serif'; g.fillStyle = 'rgba(150,175,255,.3)'; g.fillText(num, W - 52, 44);
+      var LS = 290, lx = (W - LS) / 2, ly = 140;
+      g.save(); g.shadowColor = col; g.shadowBlur = 60; rr(lx, ly, LS, LS, 64); g.fillStyle = '#0a1430'; g.fill(); g.restore();
+      if (logo){ g.save(); rr(lx, ly, LS, LS, 64); g.clip(); g.drawImage(logo, lx, ly, LS, LS); g.restore(); }
+      g.strokeStyle = 'rgba(255,255,255,.28)'; g.lineWidth = 2; rr(lx, ly, LS, LS, 64); g.stroke();
+      g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.fillStyle = '#eaf0ff';
+      var fs = 56; do { g.font = '700 ' + fs + 'px Unbounded, Inter, sans-serif'; fs -= 2; } while (g.measureText(info.name).width > W - 110 && fs > 26);
+      g.fillText(info.name, W / 2, 520);
+      g.font = '500 30px Inter, sans-serif'; g.fillStyle = '#9eabcf'; g.fillText(info.role, W / 2, 572);
+      if (info.cat){ var pt = info.cat.toUpperCase(); g.font = '500 21px "JetBrains Mono", monospace'; var pw = g.measureText(pt).width + 44; rr((W - pw) / 2, 626, pw, 46, 23); g.strokeStyle = col; g.lineWidth = 2; g.stroke(); g.fillStyle = col; g.textBaseline = 'middle'; g.fillText(pt, W / 2, 650); }
+      tex.needsUpdate = true;
+    }
+    draw();
+    var im = new Image(); im.crossOrigin = 'anonymous'; im.onload = function(){ logo = im; draw(); }; im.src = info.img;
+    return tex;
   }
+  function rectLoop(w, h, color, op){ var hw = w / 2, hh = h / 2; return new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-hw, -hh, 0), new THREE.Vector3(hw, -hh, 0), new THREE.Vector3(hw, hh, 0), new THREE.Vector3(-hw, hh, 0)]), new THREE.LineBasicMaterial({ color:color, transparent:true, opacity:op, depthWrite:false })); }
+  var SHAPES = [
+    function(){ return new THREE.IcosahedronGeometry(3.0, 0); },
+    function(){ return new THREE.OctahedronGeometry(3.3, 0); },
+    function(){ return new THREE.DodecahedronGeometry(3.0, 0); },
+    function(){ return new THREE.TorusKnotGeometry(2.2, .5, 64, 6, 2, 3); }
+  ];
+  var CW = 3.2, CH = 4;
   var planets = L.planets.map(function(pos, i){
-    var pal = planetPalettes[i], R = 1.85 + (i % 3) * .15, T = .34;
+    var pal = planetPalettes[i % planetPalettes.length], dir = i % 2 ? -1 : 1, num = String(i + 1).padStart(2, '0');
     var grp = new THREE.Group(); grp.position.copy(pos); scene.add(grp);
-    // soft colour glow + orbit ring behind the medallion
-    var glow = glowSprite(pal[2], R * 4.4, .3); glow.position.z = -.6; grp.add(glow);
-    var orbitRing = ringLine(R * 1.45, pal[2], .3); orbitRing.rotation.x = 1.25; grp.add(orbitRing);
-    // the medallion: the project's logo on both faces, metallic rim in the project colour
-    var med = new THREE.Group(); grp.add(med);
-    var edge = new THREE.Mesh(new THREE.CylinderGeometry(R, R, T, 96, 1, true), new THREE.MeshStandardMaterial({ color:pal[0], metalness:.9, roughness:.25, emissive:pal[1], emissiveIntensity:.45, side:THREE.DoubleSide }));
-    edge.rotation.x = Math.PI / 2; med.add(edge);
-    var faceMat = new THREE.MeshBasicMaterial({ map:bigLogo(roleLinks[i].img) });
-    var front = new THREE.Mesh(new THREE.CircleGeometry(R, 96), faceMat); front.position.z = T / 2 + .001; med.add(front);
-    var back = new THREE.Mesh(new THREE.CircleGeometry(R, 96), faceMat); back.position.z = -T / 2 - .001; back.rotation.y = Math.PI; med.add(back);
-    var bevelMat = new THREE.MeshStandardMaterial({ color:pal[2], metalness:.85, roughness:.2, emissive:pal[2], emissiveIntensity:.25 });
-    var b1 = new THREE.Mesh(new THREE.TorusGeometry(R, .07, 16, 128), bevelMat); b1.position.z = T / 2; med.add(b1);
-    var b2 = new THREE.Mesh(new THREE.TorusGeometry(R, .07, 16, 128), bevelMat); b2.position.z = -T / 2; med.add(b2);
-    var tag = label(String(i + 1).padStart(2, '0') + ' · ' + roleLinks[i].name.toUpperCase(), { size:30, scale:.34 });
-    tag.position.set(0, R + .85, 0); grp.add(tag);
-    front.userData.pick = back.userData.pick = { url:roleLinks[i].url, name:roleLinks[i].name + ' on X', grp:grp };
-    pickables.push(front, back);
+    var glow = glowSprite(pal[2], 10, .22); glow.position.z = -2; grp.add(glow);
+    // wireframe geometry slowly turning behind the card
+    var wire = new THREE.LineSegments(new THREE.EdgesGeometry(SHAPES[i % SHAPES.length]()), new THREE.LineBasicMaterial({ color:pal[0], transparent:true, opacity:.3, depthWrite:false }));
+    wire.position.z = -2.2; grp.add(wire);
+    // particle swarm that converges on arrival
+    var PN = small ? 90 : 160, pp = new Float32Array(PN * 3);
+    for (var q = 0; q < PN; q++){ var pa = Math.random() * Math.PI * 2, pr = 3 + Math.random() * 1.6; pp[q*3] = Math.cos(pa) * pr; pp[q*3+1] = Math.sin(pa) * pr * 1.15; pp[q*3+2] = (Math.random() - .5) * 2.5; }
+    var pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.BufferAttribute(pp, 3));
+    var swarmMat = new THREE.PointsMaterial({ color:pal[2], size:.08, map:DOT, transparent:true, opacity:.8, depthWrite:false, blending:THREE.AdditiveBlending });
+    var swarm = new THREE.Points(pg, swarmMat); grp.add(swarm);
+    // the card itself, plus offset laser frames for depth
+    var holder = new THREE.Group(); grp.add(holder);
+    var faceMat = new THREE.MeshBasicMaterial({ map:cardTex(roleLinks[i], pal, num), transparent:true });
+    var front = new THREE.Mesh(new THREE.PlaneGeometry(CW, CH), faceMat); holder.add(front);
+    var backMat = new THREE.MeshBasicMaterial({ color:0x0a1430, transparent:true });
+    var back = new THREE.Mesh(new THREE.PlaneGeometry(CW * .94, CH * .94), backMat); back.rotation.y = Math.PI; back.position.z = -.01; holder.add(back);
+    var f1 = rectLoop(CW + .35, CH + .35, pal[2], .55); f1.position.z = -.3; holder.add(f1);
+    var f2 = rectLoop(CW + .8, CH + .8, pal[0], .25); f2.position.z = -.7; holder.add(f2);
+    var scan = new THREE.Mesh(new THREE.PlaneGeometry(CW * .92, .03), new THREE.MeshBasicMaterial({ color:pal[2], transparent:true, opacity:.7, blending:THREE.AdditiveBlending, depthWrite:false })); scan.position.z = .02; holder.add(scan);
+    if (roleLinks[i].url){
+      front.userData.pick = { url:roleLinks[i].url, name:roleLinks[i].name + (/steampowered/.test(roleLinks[i].url) ? ' on Steam' : ' on X'), grp:grp };
+      pickables.push(front);
+    }
     spinners.push(function(dt, t){
-      med.position.y = Math.sin(t * .8 + i) * .12;
-      med.lookAt(camera.position);
-      med.rotateY(Math.sin(t * .45 + i) * .55);   // gentle swing shows the 3D rim
-      med.rotateX(Math.sin(t * .35 + i * 2) * .12);
-      orbitRing.rotation.z += dt * .2;
+      // k: 0 far away → 1 when the camera is parked at this stop
+      var d = Math.abs(camera.position.z - (pos.z + 13)), k = 1 - smooth(5, 22, d), ke = k * k * (3 - 2 * k);
+      holder.position.set(0, Math.sin(t * .8 + i) * .1 - (1 - ke) * 1.4, (1 - ke) * -3);
+      holder.scale.setScalar(.55 + .45 * ke);
+      holder.lookAt(camera.position);
+      holder.rotateY((1 - ke) * 1.5 * dir + Math.sin(t * .5 + i) * .12);
+      holder.rotateX(Math.sin(t * .4 + i * 2) * .05);
+      front.visible = back.visible = ke > .01; faceMat.opacity = backMat.opacity = ke; f1.material.opacity = .55 * ke; f2.material.opacity = .25 * ke;
+      f1.position.z = -.3 - (1 - ke) * 1.2; f2.position.z = -.7 - (1 - ke) * 2.4;
+      scan.position.y = (((t * .35 + i * .3) % 1) - .5) * CH * .92; scan.material.opacity = .55 * ke;
+      wire.rotation.x += dt * .12; wire.rotation.y += dt * .18 * dir; wire.material.opacity = .08 + .26 * ke; wire.scale.setScalar(1.25 - .25 * ke);
+      swarm.rotation.z += dt * (.15 + (1 - ke) * .9) * dir; swarm.scale.setScalar(1.9 - .9 * ke); swarmMat.opacity = .2 + .6 * ke;
+      glow.material.opacity = .08 + .2 * ke;
     });
     return grp;
   });
+
+  /* ---------- Warp streaks (react to flight speed) ---------- */
+  var WN = small ? 500 : 900, wpos = new Float32Array(WN * 6), wt = new Float32Array(WN * 2);
+  for (var wi = 0; wi < WN; wi++){
+    var wa = Math.random() * Math.PI * 2, wr = 3.5 + Math.random() * 16, wx = Math.cos(wa) * wr, wy = Math.sin(wa) * wr * .7, wz = Math.random() * 140;
+    wpos[wi*6] = wpos[wi*6+3] = wx; wpos[wi*6+1] = wpos[wi*6+4] = wy; wpos[wi*6+2] = wpos[wi*6+5] = wz; wt[wi*2] = 0; wt[wi*2+1] = 1;
+  }
+  var wg = new THREE.BufferGeometry(); wg.setAttribute('position', new THREE.BufferAttribute(wpos, 3)); wg.setAttribute('aT', new THREE.BufferAttribute(wt, 1));
+  var warpMat = new THREE.ShaderMaterial({ transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+    uniforms:{ uCamZ:{ value:0 }, uS:{ value:0 }, uO:{ value:0 }, uC:{ value:new THREE.Color(0x8fd8ff) } },
+    vertexShader:'attribute float aT; uniform float uCamZ, uS; varying float vT; void main(){ vT = aT; vec3 p = position; p.z = mod(p.z - uCamZ, 140.0) + uCamZ - 125.0 + aT * uS; gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0); }',
+    fragmentShader:'uniform float uO; uniform vec3 uC; varying float vT; void main(){ float a = uO * (1.0 - vT * .9); gl_FragColor = vec4(uC * a, a); }' });
+  var warp = new THREE.LineSegments(wg, warpMat); warp.frustumCulled = false; scene.add(warp);
+  var flight = { vz:0, vx:0, lastZ:null, lastX:0, bank:0 };
 
   /* ---------- 02 CONTENT: floating screens ---------- */
   var postLinks = Array.prototype.slice.call(doc.querySelectorAll('.post'));
@@ -1057,7 +1233,24 @@ function startWorld(){
   });
   spinners.push(function(dt, t){ screens.children.forEach(function(m){ var b = m.userData.pick.base; m.position.y = b.y + Math.sin(t * .7 + m.userData.i) * .08; }); });
 
-  /* ---------- 03 SERVICES: constellation ---------- */
+  /* ---------- 03 MOTION: screen + orbiting film strip ---------- */
+  var mo = new THREE.Group(); mo.position.copy(L.motion); scene.add(mo);
+  var scrMat = new THREE.ShaderMaterial({ transparent:true, uniforms:{ uT:{ value:0 } }, vertexShader:VS,
+    fragmentShader:RR + 'varying vec2 vUv; uniform float uT; float tri(vec2 p){ p.x -= .04; return max(abs(p.y) * 1.15 + p.x * .6 - .11, -p.x - .1); } void main(){ vec2 p=(vUv-.5)*vec2(1.7778,1.0); float d=sdRR(p,vec2(.8889,.5),.06); float a=1.0-smoothstep(-.003,.003,d); vec3 c=mix(vec3(.04,.07,.22),vec3(.2,.1,.45),vUv.x+.25*sin(uT*.6+vUv.y*3.0)); c+=vec3(.25,.75,1.0)*.18*smoothstep(.3,0.0,abs(fract(vUv.x*1.5-uT*.25)-.5)); c+=vec3(.4,.9,1.0)*smoothstep(-.025,0.0,d)*.8; float pr=length(p); c=mix(c,vec3(.4,.9,1.0)*.35,smoothstep(.2,.19,pr)*.6); c=mix(c,vec3(1.0),smoothstep(.006,0.0,tri(p))); c+=vec3(.4,.9,1.0)*smoothstep(.012,0.0,abs(pr-.2))*.9; float bar=step(vUv.y,.06)*step(.04,vUv.y)*step(.06,vUv.x)*step(vUv.x,.94); float prog=step(vUv.x,.06+.88*fract(uT*.08)); c=mix(c,mix(vec3(.25,.3,.5),vec3(.4,.9,1.0),prog),bar*.9); gl_FragColor=vec4(c,a); }' });
+  var scr = new THREE.Mesh(new THREE.PlaneGeometry(5.6, 3.15), scrMat); mo.add(scr);
+  mo.add(glowSprite(0x9b7bff, 10, .4));
+  var strip = new THREE.Group(); strip.rotation.x = .35; mo.add(strip);
+  var FR = 4.6, FN = 28;
+  for (var fi = 0; fi < FN; fi++){
+    var fa = fi / FN * Math.PI * 2;
+    var fr = new THREE.Mesh(new THREE.PlaneGeometry(.62, .42), new THREE.MeshBasicMaterial({ color:fi % 2 ? 0x6f95ff : 0x9b7bff, transparent:true, opacity:.55, side:THREE.DoubleSide, depthWrite:false }));
+    fr.position.set(Math.cos(fa) * FR, 0, Math.sin(fa) * FR); fr.lookAt(0, 0, 0); strip.add(fr);
+  }
+  var sr1 = ringLine(FR, 0x66e3ff, .5); sr1.rotation.x = Math.PI / 2; sr1.position.y = .26; strip.add(sr1);
+  var sr2 = ringLine(FR, 0x66e3ff, .5); sr2.rotation.x = Math.PI / 2; sr2.position.y = -.26; strip.add(sr2);
+  spinners.push(function(dt, t){ scrMat.uniforms.uT.value = t; strip.rotation.y += dt * .25; scr.position.y = Math.sin(t * .8) * .08; scr.rotation.y = Math.sin(t * .3) * .12; });
+
+  /* ---------- 04 SERVICES: constellation ---------- */
   var svcNames = ['Community Growth','Web3 Marketing','Partnerships & BD','KOL & Outreach','Gaming & Players'];
   var cons = new THREE.Group(); cons.position.copy(L.services); scene.add(cons);
   var nodes = svcNames.map(function(n, i){ var a = -Math.PI / 2 + i / 5 * Math.PI * 2; return new THREE.Vector3(Math.cos(a) * 3.4, -Math.sin(a) * 3.4, (i % 2 ? .6 : -.6)); });
@@ -1173,6 +1366,7 @@ function startWorld(){
     else if (kind === 'gate'){ s.target = L.gate.clone(); s.cam = new THREE.Vector3(0, .6, L.gate.z + 13); s.sec = 'work'; }
     else if (kind === 'role'){ var i = +el.getAttribute('data-planet'), P = L.planets[i]; s.target = P.clone(); s.cam = new THREE.Vector3(P.x * .3, P.y + .8, P.z + 13); s.sec = 'work'; s.planet = i; }
     else if (kind === 'content'){ s.target = L.content.clone(); s.cam = L.content.clone().add(new THREE.Vector3(0, 0, 12.5)); s.sec = 'content'; }
+    else if (kind === 'motion'){ s.target = L.motion.clone(); s.cam = L.motion.clone().add(new THREE.Vector3(0, .5, 11)); s.sec = 'motion'; }
     else if (kind === 'services'){ s.target = L.services.clone(); s.cam = L.services.clone().add(new THREE.Vector3(0, .4, 11)); s.sec = 'services'; }
     else if (kind === 'network'){ s.target = L.network.clone(); s.cam = L.network.clone().add(new THREE.Vector3(0, 1.6, 13)); s.sec = 'network'; }
     else if (kind === 'about'){ s.target = L.about.clone(); s.cam = L.about.clone().add(new THREE.Vector3(0, .5, 8.5)); s.sec = 'about'; }
@@ -1288,6 +1482,19 @@ function startWorld(){
     cx = lerp(cx, px, .05); cy = lerp(cy, py, .05);
     camera.position.x += cx * .6; camera.position.y -= cy * .4;
     camera.lookAt(look);
+    // flight feel: speed-driven warp streaks, FOV kick, and a slight bank into turns
+    if (flight.lastZ === null){ flight.lastZ = camera.position.z; flight.lastX = camera.position.x; }
+    var idt = 1 / Math.max(dt, .001);
+    flight.vz = lerp(flight.vz, (camera.position.z - flight.lastZ) * idt, .15);
+    flight.vx = lerp(flight.vx, (camera.position.x - flight.lastX) * idt, .1);
+    flight.lastZ = camera.position.z; flight.lastX = camera.position.x;
+    var spd = Math.abs(flight.vz);
+    warpMat.uniforms.uCamZ.value = camera.position.z;
+    warpMat.uniforms.uS.value = clamp(-flight.vz * .35, -14, 14);
+    warpMat.uniforms.uO.value = clamp((spd - 2) / 30, 0, 1) * .85;
+    flight.bank = lerp(flight.bank, clamp(-flight.vx * .035, -.14, .14), .08);
+    camera.rotateZ(flight.bank);
+    camera.fov = 50 + Math.min(spd, 50) * .22;
     camera.position.x -= cx * .6; camera.position.y += cy * .4;
     camLight.position.copy(camera.position);
 
@@ -1339,7 +1546,7 @@ function staticHud(){
   if (root.classList.contains('world') || !('IntersectionObserver' in window)) return;
   var links = Array.prototype.slice.call(doc.querySelectorAll('.hud a'));
   var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) links.forEach(function(a){ if (a.dataset.sec === e.target.id) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current'); }); }); }, { rootMargin:'-45% 0px -50% 0px' });
-  ['origin','work','content','services','network','about','gallery','contact'].forEach(function(id){ io.observe(doc.getElementById(id)); });
+  ['origin','work','content','motion','services','network','about','gallery','contact'].forEach(function(id){ io.observe(doc.getElementById(id)); });
 }
 function boot(){ var go = function(){ if (go.done) return; go.done = true; try { startWorld(); } catch (e) { root.classList.remove('world'); if (window.console) console.warn('[world] disabled:', e); } staticHud(); }; if (doc.fonts && doc.fonts.ready) { doc.fonts.ready.then(go); setTimeout(go, 1200); } else go(); }
 if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', boot); else boot();
