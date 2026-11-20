@@ -228,13 +228,17 @@ main{position:relative;z-index:10}
 .result .k{display:block;margin-bottom:5px}
 
 /* ---------- MOTION reels ---------- */
-.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-@media (max-width:560px){.reels{grid-template-columns:1fr 1fr}}
-.reel{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:rgba(2,3,10,.5)}
+.reels{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px}
+@media (max-width:640px){.reels{grid-template-columns:1fr}}
+@media (min-width:1024px){.motion-panel{width:min(100%, 900px, 58vw)}}
+.reel{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:rgba(2,3,10,.5);transition:border-color .3s, box-shadow .3s}
+.reel.is-live{border-color:var(--cyan);box-shadow:0 0 0 1px rgba(102,227,255,.35), 0 0 28px -6px rgba(102,227,255,.6)}
+.reel.is-live figcaption .k{color:var(--cyan)}
+.reel.is-live figcaption .k::after{content:" · On screen";color:var(--cyan)}
 .reel video,.reel iframe{display:block;width:100%;aspect-ratio:16/9;border:0;background:#000;object-fit:contain}
 .reel.tall video,.reel.tall iframe{aspect-ratio:9/16}
-.reel figcaption{padding:8px 10px 10px}
-.reel figcaption .k{display:block;font-size:9.5px}
+.reel figcaption{padding:10px 12px 12px}
+.reel figcaption .k{display:block;font-size:10.5px}
 .reel figcaption b{display:block;margin-top:4px;font:600 12.5px/1.3 var(--f-display)}
 .reel-slot{aspect-ratio:16/9;border-radius:12px;border:1px dashed var(--line-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--dim);font:500 9.5px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;background:rgba(2,3,10,.35)}
 .reel-slot i{width:0;height:0;border-left:12px solid var(--cyan);border-top:8px solid transparent;border-bottom:8px solid transparent;opacity:.6}
@@ -659,10 +663,10 @@ html.c-pick body{cursor:none}
      ===================================================== -->
 <section id="motion" aria-labelledby="motion-title">
   <div class="stop" data-stop="motion" data-side="right">
-    <div class="panel panel--wide" style="--pw:640px">
+    <div class="panel panel--wide motion-panel" style="--pw:900px">
       <span class="tag">03 · Motion video editor</span>
       <h2 class="h2" id="motion-title">Motion that <em>moves</em> people.</h2>
-      <p class="lede">Promo videos, launch teasers, and motion content I’ve edited for Web3 projects. Showreel coming soon.</p>
+      <p class="lede">Promo videos, launch teasers, and motion content I’ve edited for Web3 projects. The screen plays a preview of every sample. Hit play on any one to watch it in full.</p>
       <!-- Videos live in the repo root as motion1.mp4 … motion6.mp4.
            To add another: copy one <figure> block and change the number.
            Add a title under the number with  <b>Video title</b>  inside <figcaption>. -->
@@ -1235,10 +1239,31 @@ function startWorld(){
 
   /* ---------- 03 MOTION: screen + orbiting film strip ---------- */
   var mo = new THREE.Group(); mo.position.copy(L.motion); scene.add(mo);
-  var scrMat = new THREE.ShaderMaterial({ transparent:true, uniforms:{ uT:{ value:0 } }, vertexShader:VS,
-    fragmentShader:RR + 'varying vec2 vUv; uniform float uT; float tri(vec2 p){ p.x -= .04; return max(abs(p.y) * 1.15 + p.x * .6 - .11, -p.x - .1); } void main(){ vec2 p=(vUv-.5)*vec2(1.7778,1.0); float d=sdRR(p,vec2(.8889,.5),.06); float a=1.0-smoothstep(-.003,.003,d); vec3 c=mix(vec3(.04,.07,.22),vec3(.2,.1,.45),vUv.x+.25*sin(uT*.6+vUv.y*3.0)); c+=vec3(.25,.75,1.0)*.18*smoothstep(.3,0.0,abs(fract(vUv.x*1.5-uT*.25)-.5)); c+=vec3(.4,.9,1.0)*smoothstep(-.025,0.0,d)*.8; float pr=length(p); c=mix(c,vec3(.4,.9,1.0)*.35,smoothstep(.2,.19,pr)*.6); c=mix(c,vec3(1.0),smoothstep(.006,0.0,tri(p))); c+=vec3(.4,.9,1.0)*smoothstep(.012,0.0,abs(pr-.2))*.9; float bar=step(vUv.y,.06)*step(.04,vUv.y)*step(.06,vUv.x)*step(vUv.x,.94); float prog=step(vUv.x,.06+.88*fract(uT*.08)); c=mix(c,mix(vec3(.25,.3,.5),vec3(.4,.9,1.0),prog),bar*.9); gl_FragColor=vec4(c,a); }' });
+  // Showreel: a hidden muted video cycles through every motion sample and feeds the 3D screen
+  var reelEls = Array.prototype.slice.call(doc.querySelectorAll('#motionReels .reel'));
+  var reelSrcs = reelEls.map(function(f){ return f.querySelector('video').getAttribute('src').split('#')[0]; });
+  var RN = Math.max(1, reelSrcs.length), SEG = 6;  // seconds each sample stays on screen
+  var pv = doc.createElement('video'); pv.muted = true; pv.defaultMuted = true; pv.setAttribute('muted', ''); pv.playsInline = true; pv.setAttribute('playsinline', ''); pv.preload = 'auto'; pv.crossOrigin = 'anonymous';
+  var vtex = new THREE.VideoTexture(pv); vtex.minFilter = THREE.LinearFilter; vtex.magFilter = THREE.LinearFilter; vtex.generateMipmaps = false;
+  var reel = { i:0, t0:0, on:false, ready:false };
+  var scrMat = new THREE.ShaderMaterial({ transparent:true, uniforms:{ uT:{ value:0 }, uVid:{ value:vtex }, uHas:{ value:0 }, uVA:{ value:1.7778 }, uIdx:{ value:0 }, uProg:{ value:0 }, uN:{ value:RN } }, vertexShader:VS,
+    fragmentShader:RR + 'varying vec2 vUv; uniform float uT, uHas, uVA, uIdx, uProg, uN; uniform sampler2D uVid; float tri(vec2 p){ p.x -= .04; return max(abs(p.y) * 1.15 + p.x * .6 - .11, -p.x - .1); } void main(){ vec2 p=(vUv-.5)*vec2(1.7778,1.0); float d=sdRR(p,vec2(.8889,.5),.06); float a=1.0-smoothstep(-.003,.003,d); vec3 c=mix(vec3(.04,.07,.22),vec3(.2,.1,.45),vUv.x+.25*sin(uT*.6+vUv.y*3.0)); c+=vec3(.25,.75,1.0)*.18*smoothstep(.3,0.0,abs(fract(vUv.x*1.5-uT*.25)-.5)); vec2 q=vUv-.5; if (uVA < 1.7778) q.x *= 1.7778/uVA; else q.y *= uVA/1.7778; q+=.5; float inV=step(0.0,q.x)*step(q.x,1.0)*step(0.0,q.y)*step(q.y,1.0); vec3 vc=texture2D(uVid,q).rgb; c=mix(c*(1.0-uHas*.75), vc, inV*uHas); float pr=length(p); float pa=1.0-uHas*.85; c=mix(c,vec3(.4,.9,1.0)*.35,smoothstep(.2,.19,pr)*.6*pa); c=mix(c,vec3(1.0),smoothstep(.006,0.0,tri(p))*pa); c+=vec3(.4,.9,1.0)*smoothstep(.012,0.0,abs(pr-.2))*.9*pa; c+=vec3(.4,.9,1.0)*smoothstep(-.025,0.0,d)*.8; float inBar=step(.035,vUv.y)*step(vUv.y,.055)*step(.06,vUv.x)*step(vUv.x,.94); float bx=(vUv.x-.06)/.88*uN; float seg=floor(bx); float fx=fract(bx); float gap=step(.96,fx); float fill = seg < uIdx ? 1.0 : (seg == uIdx ? step(fx, uProg) : 0.0); vec3 bc=mix(vec3(.3,.34,.55),vec3(.4,.9,1.0),fill); c=mix(c,bc,inBar*(1.0-gap)*.95); gl_FragColor=vec4(c,a); }' });
+  function reelLoad(k){
+    reel.i = (k + RN) % RN; reel.ready = false; scrMat.uniforms.uIdx.value = reel.i; scrMat.uniforms.uProg.value = 0;
+    reelEls.forEach(function(f, n){ f.classList.toggle('is-live', n === reel.i); });
+    reelTags.forEach(function(l, n){ l.visible = n === reel.i; });
+    pv.src = reelSrcs[reel.i]; pv.load();
+    if (reel.on){ var pr = pv.play(); if (pr && pr.catch) pr.catch(function(){}); }
+  }
+  pv.addEventListener('loadeddata', function(){ reel.ready = true; reel.t0 = pv.currentTime; if (pv.videoWidth) scrMat.uniforms.uVA.value = pv.videoWidth / pv.videoHeight; });
+  pv.addEventListener('ended', function(){ reelLoad(reel.i + 1); });
+  pv.addEventListener('error', function(){ setTimeout(function(){ reelLoad(reel.i + 1); }, 800); });
   var scr = new THREE.Mesh(new THREE.PlaneGeometry(5.6, 3.15), scrMat); mo.add(scr);
   mo.add(glowSprite(0x9b7bff, 10, .4));
+  var reelTags = reelSrcs.map(function(src, n){ var l = label('MOTION · ' + String(n + 1).padStart(2, '0') + '  /  ' + String(RN).padStart(2, '0'), { size:28, scale:.4 }); l.position.set(0, -2.15, .1); l.visible = false; mo.add(l); return l; });
+  scr.userData.pick = { name:'Watch this video', action:function(){ var f = reelEls[reel.i]; if (!f) return; var v = f.querySelector('video'); f.scrollIntoView({ behavior:'smooth', block:'center' }); var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); } };
+  pickables.push(scr);
+  if (reelSrcs.length) reelLoad(0);
   var strip = new THREE.Group(); strip.rotation.x = .35; mo.add(strip);
   var FR = 4.6, FN = 28;
   for (var fi = 0; fi < FN; fi++){
@@ -1248,7 +1273,19 @@ function startWorld(){
   }
   var sr1 = ringLine(FR, 0x66e3ff, .5); sr1.rotation.x = Math.PI / 2; sr1.position.y = .26; strip.add(sr1);
   var sr2 = ringLine(FR, 0x66e3ff, .5); sr2.rotation.x = Math.PI / 2; sr2.position.y = -.26; strip.add(sr2);
-  spinners.push(function(dt, t){ scrMat.uniforms.uT.value = t; strip.rotation.y += dt * .25; scr.position.y = Math.sin(t * .8) * .08; scr.rotation.y = Math.sin(t * .3) * .12; });
+  spinners.push(function(dt, t){
+    // play the showreel only while the Motion stop is near, to save bandwidth
+    var near = Math.abs(camera.position.z - (L.motion.z + 13)) < 34 && !doc.hidden;
+    if (near && !reel.on){ reel.on = true; var pr = pv.play(); if (pr && pr.catch) pr.catch(function(){}); }
+    else if (!near && reel.on){ reel.on = false; pv.pause(); }
+    var has = reel.ready && pv.readyState >= 2;
+    scrMat.uniforms.uHas.value = lerp(scrMat.uniforms.uHas.value, has ? 1 : 0, .1);
+    if (has){
+      var lim = Math.min(SEG, (pv.duration || SEG) - .05), el = pv.currentTime - reel.t0;
+      scrMat.uniforms.uProg.value = clamp(el / lim, 0, 1);
+      if (el >= lim) reelLoad(reel.i + 1);
+    }
+    scrMat.uniforms.uT.value = t; strip.rotation.y += dt * .25; scr.position.y = Math.sin(t * .8) * .08; scr.rotation.y = Math.sin(t * .3) * .12; });
 
   /* ---------- 04 SERVICES: constellation ---------- */
   var svcNames = ['Community Growth','Web3 Marketing','Partnerships & BD','KOL & Outreach','Gaming & Players'];
@@ -1366,7 +1403,7 @@ function startWorld(){
     else if (kind === 'gate'){ s.target = L.gate.clone(); s.cam = new THREE.Vector3(0, .6, L.gate.z + 13); s.sec = 'work'; }
     else if (kind === 'role'){ var i = +el.getAttribute('data-planet'), P = L.planets[i]; s.target = P.clone(); s.cam = new THREE.Vector3(P.x * .3, P.y + .8, P.z + 13); s.sec = 'work'; s.planet = i; }
     else if (kind === 'content'){ s.target = L.content.clone(); s.cam = L.content.clone().add(new THREE.Vector3(0, 0, 12.5)); s.sec = 'content'; }
-    else if (kind === 'motion'){ s.target = L.motion.clone(); s.cam = L.motion.clone().add(new THREE.Vector3(0, .5, 11)); s.sec = 'motion'; }
+    else if (kind === 'motion'){ s.target = L.motion.clone(); s.cam = L.motion.clone().add(new THREE.Vector3(0, .5, 13)); s.sec = 'motion'; }
     else if (kind === 'services'){ s.target = L.services.clone(); s.cam = L.services.clone().add(new THREE.Vector3(0, .4, 11)); s.sec = 'services'; }
     else if (kind === 'network'){ s.target = L.network.clone(); s.cam = L.network.clone().add(new THREE.Vector3(0, 1.6, 13)); s.sec = 'network'; }
     else if (kind === 'about'){ s.target = L.about.clone(); s.cam = L.about.clone().add(new THREE.Vector3(0, .5, 8.5)); s.sec = 'about'; }
@@ -1458,7 +1495,7 @@ function startWorld(){
   }
   addEventListener('click', function(e){
     var o = pick(e.clientX, e.clientY);
-    if (o && o.userData.pick) window.open(o.userData.pick.url, '_blank', 'noopener');
+    if (o && o.userData.pick){ if (o.userData.pick.action) o.userData.pick.action(); else window.open(o.userData.pick.url, '_blank', 'noopener'); }
   });
   var pickTimer = 0, zTick = 0;
 
@@ -1525,7 +1562,7 @@ function startWorld(){
         hovered = o;
         if (o && o.userData.pick.mat) o.userData.pick.mat.uniforms.uH.value = 1;
         tip.classList.toggle('show', !!o); if (o) tip.textContent = o.userData.pick.name + '  ↗';
-        cursor.setLabel(o ? 'Open' : ''); root.classList.toggle('c-pick', !!o);
+        cursor.setLabel(o ? (o.userData.pick.action ? 'Play' : 'Open') : ''); root.classList.toggle('c-pick', !!o);
       }
     }
     if (hovered) tip.style.transform = 'translate3d(' + (mouse.x + 22) + 'px,' + (mouse.y + 18) + 'px,0)';
